@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dito & Maya</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192x192.png">
+    <meta name="theme-color" content="#212529">
+    <meta name="color-scheme" content="dark">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous">
+    <!-- <link rel="preconnect" href="https://Maya-Dito-api.vercel.app" crossorigin="anonymous"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css"
+        integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+        integrity="sha256-GqiEX9BuR1rv5zPU5Vs2qS/NSHl1BJyBcjQYJ6ycwD4=" crossorigin="anonymous">
+    
+    <!-- fancybox -->
+     <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap">
+    <link rel="stylesheet" href="css/app.css">
+
+    <meta property="og:title" content="Wedding Invitaion">
+    <meta property="og:description" content="You are invited to the wedding celebration of Dito and Maya">
+    <meta property="og:description" content="24 Agustus 2023">
+    <meta property="og:image" itemprop="image" content="assets/images/1.jpg">
+</head>
+
+<body data-email="user@example.com" data-password="12345678">
+    <nav class="navbar navbar-dark navbar-expand fixed-bottom rounded-top-4 p-0" id="navbar-example2" style="background-color: #b7871b;">
+        <ul class="navbar-nav nav-justified w-100 align-items-center">
+            <li class="nav-item">
+                <a class="nav-link" href="#home">
+                    <i class="fas fa-home"></i>
+                    <span class="d-block" style="font-size: 0.7rem;">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#mempelai">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span class="d-block" style="font-size: 0.7rem;">Mempelai</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#gallery">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="d-block" style="font-size: 0.7rem;">Gallery</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#ucapan">
+                    <i class="fa-solid fa-comments"></i>
+                    <span class="d-block" style="font-size: 0.7rem;">Ucapan</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-aside-main">
+        
+        <aside>
+            <img src="assets/images/cover-top.jpg" alt="">
+        </aside>
+
+        <main class="scrollspy-example main-color" data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+
+            <section class="container" id="home">
+                <div class="text-center py-1 d-flex justify-content-center">
+                    <div style="position: absolute; bottom: 100px;">
+                        <!-- <h2 class="my-4">Undangan Pernikahan</h2> -->
+                        <div class="py-1">
+                            <div class="mx-auto" >
+                                <div class="py-2 px-4 mx-2 mb-4">
+                                    <div class="row justify-content-center" data-waktu="2023-09-16 12:30:00" id="tampilan-waktu">
+                                        <div class="col-3 p-1 px-4 border-jam">
+                                            <h1 class="d-inline m-0 p-0" id="hari">0</h2><br><small
+                                                class="ms-1 me-0 my-0 p-0 d-inline" style="color: #fff;">Hari</small>
+                                        </div>
+                                        <div class="col-3 p-1 px-4 border-jam">
+                                            <h1 class="d-inline m-0 p-0" id="jam">0</h2><br><small
+                                                class="ms-1 me-0 my-0 p-0 d-inline" style="color: #fff;">Jam</small>
+                                        </div>
+                                        <div class="col-3 p-1 px-4 border-jam">
+                                            <h1 class="d-inline m-0 p-0" id="menit">0</h2><br><small
+                                                class="ms-1 me-0 my-0 p-0 d-inline" style="color: #fff;">Menit</small>
+                                        </div>
+                                        <div class="col-3 p-1 px-4 border-jam">
+                                            <h1 class="d-inline m-0 p-0" id="detik">0</h2><br><small
+                                                class="ms-1 me-0 my-0 p-0 d-inline" style="color: #fff;">Detik</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="logo-depan-atas my-4 mx-auto">
+                            <img src="assets/images/logo.png" alt="bg">
+                        </div> -->
+                        <!-- <h1 class="font-estetik my-1" style="font-size: 4rem; color: #b7871b;">Dito & Maya</h1> -->
+                        <!-- <h1 class="font-estetik2 my-1" style="font-size: 2rem; color: #000000;">Dito</h1> -->
+                        <h5 class="py-2" style="color:#fff; font-size: 1rem;">Sabtu, 16 September 2023</h5>
+                        <a class="btn btn-sm button-home rounded-pill px-3 my-2" target="_blank"
+                            href="https://calendar.google.com/calendar/u/0/r/eventedit?text=The+Wedding+of+Dito+and+Maya&details=The+Wedding+of+Dito+and+Maya+%7C+16+September+2023+%7C+Aula+SMAN+1+Parakan+Jl.+Ngadirejo+-+Parakan,+Warungsari,+Tegalroso,+Kec.+Temanggung,+Kabupaten+Temanggung,+Jawa+Tengah+56254+%7C+12.30+-+14.30+WIB&dates=20230916T123000/20230916T143000-&location=https://goo.gl/maps/F3M4Z6h6Mk8dPhYD9">
+                            <i class="fa-solid fa-calendar-check me-2"></i>Save The Date</a>
+                    </div>
+                </div>
+                    
+            </section>
+
+            <!-- <svg class="wleowleo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#252525" fill-opacity="1"
+                    d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,165.3C672,160,768,96,864,96C960,96,1056,160,1152,154.7C1248,149,1344,75,1392,37.3L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                </path>
+            </svg> -->
+
+            <div class="container alisra-container"  style="background-color: #161616; border-top: 2px solid #b7871b; border-bottom: 2px solid #b7871b; padding: 5px 0px 20px 0px;">
+                <div class="text-center">
+                    <img class="alisra" src="assets/images/logo-bawah.png" alt="" data-aos="fade-up" data-aos-duration="3000">
+                    <p style="font-size: 0.9rem;" class="px-2" data-aos="fade-up" data-aos-duration="3000">
+                        Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+                        jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu
+                        rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda
+                        (kebesaran Allah) bagi kaum yang berpikir.
+                    </p>
+                    <span class="mb-5"><strong data-aos="fade-up" data-aos-duration="3000">QS. Ar-Rum Ayat 21</strong></span>
+                </div>
+            </div>
+
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="margin-top: -5px;">
+                <path fill="#252525" fill-opacity="1"
+                    d="M0,96L30,106.7C60,117,120,139,180,154.7C240,171,300,181,360,186.7C420,192,480,192,540,181.3C600,171,660,149,720,154.7C780,160,840,192,900,208C960,224,1020,224,1080,208C1140,192,1200,160,1260,138.7C1320,117,1380,107,1410,101.3L1440,96L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z">
+                </path>
+            </svg> -->
+            
+            <section style="background-color: #161616 !important; margin-top: 0px; margin-bottom: 5px;" id="mempelai">
+                <div class="text-center py-4">
+                    <h1 class="font-estetik1 py-3 px-2 main-color" style="font-size: 1.5rem;" data-aos="fade-up" data-aos-duration="3000">Assalamualaikum Wr. Wb.</h1>
+
+                    <p class="pb-3 px-3" data-aos="fade-up" data-aos-duration="3000">
+                        Dengan memohon rahmat dan ridho Allah SWT, 
+                        kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri penyelenggaraan
+                        pernikahan kami: 
+                    </p>
+
+                    <div class="overflow-y-hidden">
+                        
+                        <div data-aos="fade-left" data-aos-duration="3000">
+                            <div class="cropper shadow my-4 mx-auto" style="border: solid 3px #b7871b;">
+                                <img src="assets/images/cowo.png" alt="bg">
+                            </div>
+                            <!-- <h1 class="font-estetik" style="font-size: 4rem;">Dito</h1> -->
+                            <h1 class="py-1 px-2 font-estetik1" style="font-size: 1.5rem; letter-spacing: 1px; color: #b7871b;">Dito Arifian, S.Tr.Pel.</h1>
+                            <!-- <a href="https://instagram.com/kunDito_06" target="_blank" style="text-decoration: none;">
+                                <img style="width: 25px; margin-bottom: 5px;" src="assets/images/ig.png" alt="">
+                            </a> -->
+                            <h5 class="mt-1 mb-0 " style="font-size: 15px; color: #b7871b;">Putra dari </h5>
+                            <h5 class="mt-1 mb-0 " style="font-size: 15px; color: #b7871b;">Bapak Drs. H. Suparto</h5>
+                            <h5 class="mt-1 mb-0 " style="font-size: 15px; color: #b7871b;">Ibu Hj. Amin Yudiningsih, S.Pd.</h5>
+                            <!-- <p class="mb-0 pb-5">Bapak Hadi Syamsudin (Alm) & Ibu Siti Zumaroh</p> -->
+                        </div>
+                        
+                        <div class="d-flex flex-row text-center" data-aos="fade-right" data-aos-duration="3000">
+                            <span class="garis-and"></span>
+                            <h1 class="font-estetik my-1 double main-color" style="font-size: 4rem;">and</h1>
+                            <span class="garis-and"></span>
+                        </div>
+                            
+                        <div data-aos="fade-right" data-aos-duration="3000">
+                            <div class="cropper shadow my-4 mx-auto" style="border: solid 3px #b7871b;">
+                                <img src="assets/images/cewe.png" alt="bg">
+                            </div>
+                            <!-- <h1 class="font-estetik" style="font-size: 4rem;">Maya</h1> -->
+                            <h1 class="py-1 px-2 font-estetik1" style="font-size: 1.5rem; letter-spacing: 1px; color: #b7871b;">Maya Shella Asmara, S.Kep,. Ns.</h1>
+                            <!-- <a href="https://instagram.com/tyalengkong" target="_blank" style="text-decoration: none;">
+                                <img style="width: 25px; margin-bottom: 5px;" src="assets/images/ig.png" alt="">
+                            </a> -->
+                            <h5 class="mt-1 mb-0" style="font-size: 15px; color: #b7871b;">Putri dari</h5>
+                            <h5 class="mt-1 mb-0" style="font-size: 15px; color: #b7871b;">Bapak Drs. H. Bambang Asmara</h5>
+                            <h5 class="mt-1 mb-0" style="font-size: 15px; color: #b7871b;">Ibu Hj. Wuryaningsih</h5>
+                            <!-- <p class="mb-0">Bapak Dimyati (Alm) & Ibu Munawaroh</p> -->
+                        </div>
+
+                        <div class="foto-mempelai" data-aos="fade-up" data-aos-duration="3000">
+                            <img src="assets/images/gallery/6.jpg" alt="">
+                        </div>
+                
+
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <div class="box-tanggal">
+                                <h1 class="font-estetik1 mt-4 double main-color"  data-aos="fade-up" data-aos-duration="3000" style="font-size: 2rem;">Akad</h1>
+                                <div class="tanggal-pernikahan" data-aos="fade-right" data-aos-duration="3000">
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">08</h1>
+                                    <span class="garis-tgl"></span>
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">SEPTEMBER</h1>
+                                    <span class="garis-tgl"></span>
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">23</h1>
+                                </div>
+
+                                <!-- <h1 class="font-estetik1 mt-4 double main-color"  data-aos="fade-up" data-aos-duration="3000" style="font-size: 2rem;">Resepsi</h1>
+                                <div class="tanggal-pernikahan" data-aos="fade-right" data-aos-duration="3000">
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">16</h1>
+                                    <span class="garis-tgl"></span>
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">SEPTEMBER</h1>
+                                    <span class="garis-tgl"></span>
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">23</h1>
+                                </div>
+                                <p class="mb-0 mt-3 mx-1" style="font-size: 1rem;" data-aos="fade-right" data-aos-duration="3000">Pukul 10.00 WIB - 12.00 WIB</p> -->
+
+                                <!-- <h5 class="mt-1 mb-0 main-color" style="font-size: 1rem;">WHYNDAM HOTEL SURABAYA</h5>
+                                <h5 class="mt-1 mb-0 main-color" style="font-size: 1rem;">(SHINTA BALLROOM)</h5> -->
+                                <div class="py-1" data-aos="fade-up" data-aos-duration="3000">
+                                    <p class="mb-0 mt-3 mx-1" style="font-size: 1rem;">Pukul 08.00 WIB - Selesai</p>
+                                    <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">Kediaman Mempelai Wanita</p>
+                                    <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">Selang III RT.004 RW.003, Selang, Wonosari, Gunung Kidul, DIY</p>
+                                    <!-- <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">08 September 2023</p> -->
+                                    <!-- <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">AKAD: 08.00 WIB | RESEPSI: 10.00 WIB</p>
+                                    <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">Dress Code: White or Pink</p> -->
+                                    <a href="https://maps.app.goo.gl/Qen9RB6MGLzyFnrTA?g_st=ic" target="_blank"
+                                        class="btn btn-sm rounded-pill my-4 px-3 button-direction">
+                                        <i class="fa-solid fa-map-location-dot me-2"></i>Direction
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div class="box-tanggal">
+                                <h1 class="font-estetik1 mt-4 double main-color"  data-aos="fade-up" data-aos-duration="3000" style="font-size: 2rem;">Resepsi</h1>
+                                <div class="tanggal-pernikahan" data-aos="fade-right" data-aos-duration="3000">
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">16</h1>
+                                    <span class="garis-tgl"></span>
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">SEPTEMBER</h1>
+                                    <span class="garis-tgl"></span>
+                                    <h1 class="font-estetik3 my-1 double main-color" style="font-size: 1.2rem;">23</h1>
+                                </div>
+                                <p class="mb-0 mt-3 mx-1" style="font-size: 1rem;" data-aos="fade-right" data-aos-duration="3000">Pukul 12.30 WIB - 14.30 WIB</p>
+                                
+                                <!-- <h5 class="mt-1 mb-0 main-color" style="font-size: 1rem;">WHYNDAM HOTEL SURABAYA</h5>
+                                <h5 class="mt-1 mb-0 main-color" style="font-size: 1rem;">(SHINTA BALLROOM)</h5> -->
+                                <div class="py-1" data-aos="fade-up" data-aos-duration="3000">
+                                    <!-- <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">Pukul: 10.00 - 12.00 WIB</p> -->
+                                    <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">Aula SMAN 1 Parakan</p>
+                                    <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">Jl. Ngadirejo - Parakan, Warungsari, Tegalroso, Temanggung, Jawa Tengah</p>
+                                    <a href="https://goo.gl/maps/qekBsAhqnQLVLmCY8" target="_blank"
+                                        class="btn btn-sm rounded-pill my-2 px-3 button-direction">
+                                        <i class="fa-solid fa-map-location-dot me-2"></i>Direction
+                                    </a>
+                                    <!-- <p class="mb-0 mt-1 mx-1" style="font-size: 1rem;">Dress Code: White or Pink</p> -->
+                                </div>
+                            </div>
+                            <p class="mb-0 mt-4 mx-1 px-4" style="font-size: 1rem; text-align: left;" data-aos="fade-up" data-aos-duration="3000">NB: Dengan tanpa mengurangi rasa hormat, Kami tidak menerima tamu di rumah.</p>
+                        </div>                    
+                    </div>
+                </div>
+            </section>
+
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#111111" fill-opacity="1"
+                    d="M0,192L40,181.3C80,171,160,149,240,149.3C320,149,400,171,480,165.3C560,160,640,128,720,128C800,128,880,160,960,186.7C1040,213,1120,235,1200,218.7C1280,203,1360,149,1400,122.7L1440,96L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z">
+                </path>
+            </svg> -->
+
+            <!-- <div class="container">
+                <div class="text-center">
+                    <img class="alisra" src="assets/images/Isra.png" alt="">
+                    <p style="font-size: 0.9rem;" class="px-2" data-aos="fade-up" data-aos-duration="1500">
+                        Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+                        jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu
+                        rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda
+                        (kebesaran Allah) bagi kaum yang berpikir.
+                    </p>
+                    <span class="mb-0" data-aos="fade-up"><strong>QS. Ar-Rum Ayat 21</strong></span>
+                </div>
+            </div> -->
+
+            <!-- <svg class="wleowleo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#fff9fa" fill-opacity="1"
+                    d="M0,96L30,106.7C60,117,120,139,180,154.7C240,171,300,181,360,186.7C420,192,480,192,540,181.3C600,171,660,149,720,154.7C780,160,840,192,900,208C960,224,1020,224,1080,208C1140,192,1200,160,1260,138.7C1320,117,1380,107,1410,101.3L1440,96L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z">
+                </path>
+            </svg> -->
+
+            <section style="background-color: #161616 !important; margin-top: -5px;" id="gallery">
+                <!-- <div class="ornamen-daun">
+                    <div class="daun">
+                        <img src="assets/images/daun.png" alt="">
+                    </div>
+                </div> -->
+                <div class="container">
+                    <div class="gallery-title" data-aos="fade-up" data-aos-duration="3000">
+                        <h1 class="font-estetik1 py-3 main-color text-right" style="font-size: 2rem;">Photo Gallery</h1>                
+                    </div>
+                    <div class="row" data-aos="fade-up" data-aos-duration="3000"> 
+                        <div class="column">
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/5.jpg" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/5.jpg" loading="lazy" data-aos="fade-up" data-aos-duration="3000"/>
+                            </a>
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/3.jpg" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/3.jpg" loading="lazy" data-aos="fade-right" data-aos-duration="3000"/>
+                            </a>
+                            <!-- <img src="assets/images/gallery/5.JPG" style="width:100%" loading="lazy" data-aos="fade-up" data-aos-duration="3000"> -->
+                            <!-- <img src="assets/images/gallery/3.jpg" style="width:100%" loading="lazy" data-aos="fade-right" data-aos-duration="3000"> -->
+                        </div>  
+                        <div class="column">
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/2.JPG" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/2.JPG" loading="lazy" data-aos="fade-right" data-aos-duration="3000"/>
+                            </a>
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/7.jpg" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/7.jpg" loading="lazy" data-aos="fade-up" data-aos-duration="3000"/>
+                            </a>
+                            <!-- <img src="assets/images/gallery/2.jpg" style="width:100%" loading="lazy" data-aos="fade-right" data-aos-duration="3000">
+                            <img src="assets/images/gallery/7.jpg" style="width:100%" loading="lazy" data-aos="fade-up" data-aos-duration="3000"> -->
+                        </div>  
+                    </div>
+                    <a data-fancybox="gallery" data-src="assets/images/gallery/video.mp4" data-caption="Dito and Maya">
+                        <video width="100%" height="auto" controls class="mt-1" data-aos="fade-up" data-aos-duration="3000" poster="assets/images/gallery/12.JPG" preload="meta">
+                            <source src="assets/images/gallery/video.mp4" type="video/mp4">
+                            <source src="assets/images/gallery/video.ogg" type="video/ogg">
+                        </video>
+                        <!-- <img src="assets/images/gallery/5.JPG" loading="lazy" data-aos="fade-up" data-aos-duration="3000"/> -->
+                    </a>
+                    <!-- <video width="100%" height="auto" controls class="mt-1" data-aos="fade-up" data-aos-duration="3000" poster="assets/images/gallery/12.JPG" preload="meta">
+                        <source src="assets/images/gallery/video.mp4" type="video/mp4">
+                        <source src="assets/images/gallery/video.ogg" type="video/ogg">
+                    </video> -->
+                    <div class="row" data-aos="fade-up" data-aos-duration="3000" style="margin-top: -8px;"> 
+                        <div class="column">
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/11.jpg" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/11.jpg" loading="lazy" data-aos="fade-up" data-aos-duration="3000"/>
+                            </a>
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/9.jpg" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/9.jpg" loading="lazy" data-aos="fade-right" data-aos-duration="3000"/>
+                            </a>
+                            <!-- <img src="assets/images/gallery/11.JPG" style="width:100%" loading="lazy" data-aos="fade-up" data-aos-duration="3000">
+                            <img src="assets/images/gallery/9.jpg" style="width:100%" loading="lazy" data-aos="fade-right" data-aos-duration="3000"> -->
+                        </div>  
+                        <div class="column">
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/10.jpg" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/10.jpg" loading="lazy" data-aos="fade-right" data-aos-duration="3000"/>
+                            </a>
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/4.JPG" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/4.JPG" loading="lazy" data-aos="fade-up" data-aos-duration="3000"/>
+                            </a>
+                            <!-- <img src="assets/images/gallery/10.jpg" style="width:100%" loading="lazy" data-aos="fade-right" data-aos-duration="3000">
+                            <img src="assets/images/gallery/4.JPG" style="width:100%" loading="lazy" data-aos="fade-up" data-aos-duration="3000"> -->
+                        </div>  
+                    </div>
+                    <div class="row" data-aos="fade-up" data-aos-duration="3000" style="margin-top: 3px;"> 
+                        <div style="grid: 100%;">
+                            <a data-fancybox="gallery" data-src="assets/images/gallery/8.JPG" data-caption="Dito and Maya">
+                                <img src="assets/images/gallery/8.JPG" style="width: 100%;" loading="lazy" data-aos="fade-up" data-aos-duration="3000"/>
+                            </a>
+                            <!-- <img src="assets/images/gallery/8.JPG" style="width:100%" loading="lazy" data-aos="fade-up" data-aos-duration="3000"> -->
+                        </div>   
+                    </div>
+                </div>
+            </section>
+
+            <!-- <svg style="margin-top: -80px; z-index:1;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#fff9fa" fill-opacity="1"
+                    d="M0,224L34.3,234.7C68.6,245,137,267,206,266.7C274.3,267,343,245,411,234.7C480,224,549,224,617,213.3C685.7,203,754,181,823,197.3C891.4,213,960,267,1029,266.7C1097.1,267,1166,213,1234,192C1302.9,171,1371,181,1406,186.7L1440,192L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+                </path>
+            </svg> -->
+
+            <!-- <div class="container" style="background-color: #fff9fa; margin-top: -10px; margin-bottom: -10px;" >
+                <div class="py-4" >
+                    <div class="text-center" data-aos="fade-up" data-aos-duration="3000">
+                        <div class="gift-title" data-aos="fade-up" data-aos-duration="3000">
+                            <h1 class="font-estetik1 py-3 main-color text-right" style="font-size: 2rem;">Wedding Gift</h1>                
+                        </div>
+                        <p class="mb-1" style="font-size: 0.9rem;">
+                            Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah 
+                            ungkapan tanda kasih Anda. Kado secara cashless merupakan kebahagiaan bagi kami.
+                        </p> 
+                        <a href="https://goo.gl/maps/6kkDPZquRNUxwuVG7" target="_blank"
+                            class="btn btn-sm rounded-pill my-2 px-3 button-open">
+                            <i class="fa-solid fa-map-location-dot me-2"></i>Alamat Pengiriman
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <svg class="wleowleoo"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#fff9fa" fill-opacity="1"
+                    d="M0,96L30,106.7C60,117,120,139,180,154.7C240,171,300,181,360,186.7C420,192,480,192,540,181.3C600,171,660,149,720,154.7C780,160,840,192,900,208C960,224,1020,224,1080,208C1140,192,1200,160,1260,138.7C1320,117,1380,107,1410,101.3L1440,96L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z">
+                </path>
+            </svg> -->
+
+            <section class="m-0 p-0" id="ucapan">
+                <!-- <div class="ornamen-daun">
+                    <div class="daun1">
+                        <img src="assets/images/daun1.png" alt="">
+                    </div>
+                </div> -->
+                <div class="container">
+                    <!-- <div class="text-center" data-aos="fade-up" data-aos-duration="3000">
+                        <div class="gift-title" data-aos="fade-up" data-aos-duration="3000">
+                            <h1 class="font-estetik1 mt-2 py-3 main-color text-right" style="font-size: 2rem;">Wedding Gift</h1>                
+                        </div>
+                        <p class="mb-1" style="font-size: 0.9rem;">
+                            Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah 
+                            ungkapan tanda kasih Anda. Kado secara cashless merupakan kebahagiaan bagi kami.
+                        </p> 
+                        <div class="row justify-content-center">
+                            <div class="col-12 card-body border rounded-3 shadow p-3 m-3" style="max-width: 20rem;"
+                                data-aos="fade-up" data-aos-duration="3000">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/640px-Bank_Central_Asia.svg.png"
+                                    class="img-fluid rounded rounded-3" width="150" alt="bsi">
+                                <p class="card-text mt-3 mb-0" style="font-size: 0.9rem;">
+                                    4650469891
+                                </p>
+                                <p class="card-text" style="font-size: 0.9rem;">
+                                    a.n Anistia Dito Budi Cahyono
+                                </p>
+                                <button class="btn button-open btn-sm" data-nomer="4650469891" onclick="salin(this)">Salin
+                                    No. Rekening</button>
+                            </div>
+
+                            <div class="col-12 card-body border rounded-3 shadow p-3 m-3" style="max-width: 20rem;"
+                                data-aos="fade-up" data-aos-duration="3000">
+                                <img src="https://www.pinclipart.com/picdir/big/341-3413096_bni-bank-negara-indonesia-logo-clipart.png"
+                                    class="img-fluid rounded rounded-3" width="150" alt="bsi">
+                                <p class="card-text mt-3 mb-0" style="font-size: 0.9rem;">
+                                    0984392054
+                                </p>
+                                <p class="card-text" style="font-size: 0.9rem;">
+                                    a.n Mayata Idaroka Rohmah
+                                </p>
+                                <button class="btn button-open btn-sm" data-nomer="0984392054" onclick="salin(this)">Salin
+                                    No. Rekening</button>
+                            </div>
+
+                        </div>
+                    </div> -->
+                    <div class="contact-us box" >
+                        <div data-aos="fade-up" data-aos-duration="3000">
+                            <div class="gift-title" data-aos="fade-up" data-aos-duration="3000">
+                                <h1 class="font-estetik1 py-1 main-color text-right" style="font-size: 2rem;">Wishes</h1>                
+                            </div>
+                            <!-- <h2 class="font-estetik1 py-3 text-center" style="font-size: 2rem; margin-top: 50px;">Wishes For Us</h2> -->
+                            <p>Tinggalkan do'a/pesan/harapan untuk Dito & Maya</p>
+                            <a href="#newcomment">
+                                <button> 💌 Tuliskan Pesan..</button>
+                            </a>
+                            
+                            <div class="container2">
+                                <div id="jml-hadir">
+                                    <span id="jumlah-hadir"></span>
+                                    <span class="kecil">Hadir</span>
+                                </div>
+                                <div id="jml-tidak-hadir">
+                                    <span id="jumlah-tidak-hadir"></span>
+                                    <span class="kecil">Tidak Hadir</span>
+                                </div>
+                                <div id="jml-ragu">
+                                    <span id="jumlah-ragu"></span>
+                                    <span class="kecil">Ragu</span>
+                                </div>
+                            </div>
+                            <div class="container1"></div>
+                
+                            <div class="footer-content">
+                                <form id="newcomment">
+                                    <div class="form-elements">
+                                        <input id="name"  type="text" placeholder="Nama anda / Nama anda sekeluarga" required/>
+                                        <textarea id="message" rows="2" placeholder="Tuliskan do'a/pesan/harapan anda disini..." required></textarea>
+                                        <select name="presention" id="presention">
+                                            <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                                            <option value="Hadir">Hadir</option>
+                                            <option value="Tidak Hadir">Tidak Hadir</option>
+                                            <option value="Masih Ragu">Masih Ragu</option>
+                                        </select>
+                                        <button id="input_button" onclick="add_task()" >Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- <div class="thankyou" data-aos="fade-up" data-aos-duration="3000">
+                                <h2>Thank You</h2>
+                                <img src="asset/image/couple name.png" alt="">
+                                <h5>Maya & Dito<h5>
+                            </div> -->
+                        </div>
+                    </div>   
+                    <!-- <div class="border rounded-3 p-3">
+                        <h1 class="font-estetik1 text-center mb-3" style="font-size: 3rem;">Wishes For Us</h1>
+                        <div class="mb-3">
+                            <label for="formnama" class="form-label">Nama</label>
+                            <input type="text" class="form-control shadow-sm" id="formnama" placeholder="Isikan Nama Anda">
+                        </div>
+                        <div class="mb-3">
+                            <label for="hadiran" class="form-label">Kehadiran</label>
+                            <select class="form-select shadow-sm" aria-label="Default select example" id="hadiran">
+                                <option value="0" selected>Konfirmasi Kehadiran</option>
+                                <option value="1">Hadir</option>
+                                <option value="2">Berhalangan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formpesan" class="form-label">Ucapan & Doa</label>
+                            <textarea class="form-control shadow-sm" id="formpesan" rows="4"
+                                placeholder="Tulis Ucapan & Doa"></textarea>
+                        </div>
+                        <div class="d-grid mb-2">
+                            <button class="btn btn-light btn-sm rounded shadow py-2" onclick="kirim()" id="kirim">
+                                Send 
+                                <i class="fa-solid fa-paper-plane ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-y-scroll ucapan rounded-3 mt-4" style="height: 25rem;">
+                        <div id="daftarucapan" style="overflow-wrap: break-word !important;"></div>
+                    </div> -->
+                </div>
+            </section>
+
+            <!-- <svg style="margin-top: -100px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#fff9fa" fill-opacity="1"
+                    d="M0,224L34.3,234.7C68.6,245,137,267,206,266.7C274.3,267,343,245,411,234.7C480,224,549,224,617,213.3C685.7,203,754,181,823,197.3C891.4,213,960,267,1029,266.7C1097.1,267,1166,213,1234,192C1302.9,171,1371,181,1406,186.7L1440,192L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+                </path>
+            </svg> -->
+
+            <div class="penutup" style="background-color: #fff9fa !important; margin-top: -10px; padding-bottom: 4rem;">
+                <div class="container">
+                    <div class="text-center">
+                        <p style="font-size: 0.9rem;" class="main-color pt-4 pb-1 px-2" data-aos="fade-up" data-aos-duration="1500">
+                            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila, Bapak / Ibu / Saudara / i.
+                            berkenan hadir untuk memberikan do'a restunya kami ucapkan terimakasih.
+                        </p>
+                        <h1 class="font-estetik1 main-color" data-aos="fade-up" data-aos-duration="2000" style="font-size: 1.5rem;">Wassalamualaikum Wr. Wb.</h1>
+                        <h1 class="font-estetik mt-4 main-color" style="font-size: 4.5rem;" data-aos="fade-up" data-aos-duration="2000">Dito & Maya</h1>
+                        <hr class="mt-3 mb-2">
+                        <div class="row align-items-center flex-column flex-sm-row">
+                            <div class="col-auto py-4 main-color">
+                                <small class="footer-custom" style="color:#b7871b">
+                                    Made with full of <i class="fa-solid fa-heart mx-1 main-color"></i> 
+                                    <a target="_blank" href="https://undanganmanten.my.id" style="color:#b7871b">Undangan Manten</a>
+                                </small>
+                            </div>
+                            <!-- <div class="col-auto">
+                                <small>
+                                    <i class="fa-brands fa-github me-1"></i><a target="_blank"
+                                        href="https://github.com/dewanakl/undangan">dewanakl</a>
+                                </small>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside>
+            <img src="assets/images/cover-top.jpg" alt="">
+        </aside>
+
+    </div>
+
+   
+
+    <button type="button" id="tombol-musik" style="display: none; border: #b7871b solid 1px;" class="btn btn-sm rounded-circle btn-music"
+        onclick="play(this)" data-status="true" data-url="assets/music/sound.mp3">
+        <i class="fa-solid fa-circle-pause main-color"></i>
+    </button>
+
+    <div class="loading" id="loading"></div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen m-0">
+            <div class="modal-content">
+                <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+                    <div class="text-center" style="position: absolute; bottom: 50px;">
+                        <h6 class="mt-0 color-cover">The Wedding Of</h6>
+                        <!-- <div class="logo-depan-atas my-4 mx-auto">
+                            <img src="assets/images/logo.png" alt="bg">
+                        </div> -->
+                        <h1 class="font-estetik my-1 color-cover" style="font-size: 3.5rem;">Dito & Maya</h1>
+                        <!-- <h6 class="mt-2" style="color: #b7871b">27 Agustus 2023</h6> -->
+                        <!-- <div class="logo-depan-bawah mb-1 mx-auto">
+                            <img src="assets/images/logo-bawah.png" alt="bg">
+                        </div> -->
+                        <h6 class="mt-2 color-cover">16 September 2023</h6>
+                        <h6 class="mt-2 color-cover">Yth. Bpk/Ibu/Sdr/i</h6>
+                        <h6 class="mt-2 color-cover" id="to" >Agung </h6>
+                        <!-- <h6 class="mt-2" style="color: #000000">Welcome to</h6> -->
+                        <button type="button" class="btn button-open rounded-5 mt-2 trigger" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" onclick="buka()">
+                            <!-- <i class="fa-solid fa-envelope-open me-2"></i> -->
+                            Open Invitation
+                        </button>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <div class="protokol-kesehatan">
+        <div class="prokes-content">
+            <span class="prokes-close-button">x</span>
+            <img src="assets/images/prokes.png" alt="Protokol Kesehatan">
+        </div>
+    </div>
+
+
+    <!-- fancybox -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+      Fancybox.bind('[data-fancybox="gallery"]', {
+        //
+      });    
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"
+        integrity="sha256-pQBbLkFHcP1cy0C8IhoSdxlm0CtcH5yJ2ki9jjgR03c=" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
